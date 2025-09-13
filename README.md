@@ -75,7 +75,7 @@ assets/
 ├── full/             # Original images 
 └── thumb/            # Processed images (auto-generated)
 
-build/                # Compiled JavaScript
+dist/                # Compiled JavaScript
 ```
 
 ##  Testing
