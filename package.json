@@ -6,9 +6,11 @@
   "scripts": {
     "start": "node dist/app.js",
     "build": "tsc",
-    "test": "jasmine",
-    "lint": "eslint . --ext .ts",
-    "format": "prettier --write .",
+    "test": "npm run build && jasmine dist/tests/**/*Spec.js",
+    "test:routes": "npm run build && jasmine dist/tests/routes/*Spec.js",
+    "test:utils": "npm run build && jasmine dist/tests/utils/*Spec.js",
+    "lint": "eslint src/**/*.ts",
+    "format": "prettier --write src/**/*.ts",
     "check-all": "npm run format && npm run lint && npm run build && npm run test"
   },
   "keywords": [],
@@ -26,19 +28,17 @@
     "@types/node": "^24.3.0",
     "@types/sharp": "^0.32.0",
     "@types/supertest": "^6.0.3",
-    "@typescript-eslint/eslint-plugin": "^8.41.0",
-    "@typescript-eslint/parser": "^8.41.0",
-    "eslint": "^8.57.1",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
+    "eslint": "^8.57.0",
     "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-prettier": "^5.5.4",
-    "eslint-plugin-unused-imports": "^4.2.0",
+    "eslint-plugin-prettier": "^5.2.1",
     "jasmine": "^5.9.0",
     "jasmine-spec-reporter": "^7.0.0",
     "nodemon": "^3.1.10",
-    "prettier": "^3.6.2",
+    "prettier": "^3.3.3",
     "supertest": "^7.1.4",
     "ts-node": "^10.9.2",
-    "typescript": "^5.9.2",
-    "typescript-eslint": "^8.43.0"
+    "typescript": "^5.3.3"
   }
 }

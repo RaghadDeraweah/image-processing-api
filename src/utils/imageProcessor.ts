@@ -22,19 +22,23 @@ export class ImageProcessor {
     // Validate inputs
     if (!filename) throw new Error('Filename is required');
     if (!width || !height) throw new Error('Width and height are required');
-    if (width <= 0 || height <= 0) throw new Error('Width and height must be positive numbers');
+    if (width <= 0 || height <= 0)
+      throw new Error('Width and height must be positive numbers');
 
     // Extract name and extension
     const fileExt = path.extname(filename).toLowerCase();
     const baseName = path.basename(filename, fileExt);
-    
+
     if (!fileExt) {
-      throw new Error('Filename must include extension (e.g., image.jpg, photo.png)');
+      throw new Error(
+        'Filename must include extension (e.g., image.jpg, photo.png)',
+      );
     }
 
     const inputPath = path.join(this.fullImagesPath, filename);
     // Handle undefined format by providing a default
-    const outputFormat = format || path.extname(filename).replace('.', '') || 'jpg';
+    const outputFormat =
+      format || path.extname(filename).replace('.', '') || 'jpg';
     const outputFilename = `${baseName}_${width}x${height}.${outputFormat}`;
     const outputPath = path.join(this.thumbImagesPath, outputFilename);
 
@@ -56,7 +60,7 @@ export class ImageProcessor {
     // Process image with format-specific settings
     try {
       const sharpInstance = sharp(inputPath).resize(width, height);
-      
+
       // Set output format with appropriate options
       switch (outputFormat) {
         case 'jpg':
@@ -75,7 +79,7 @@ export class ImageProcessor {
         default:
           sharpInstance.jpeg({ quality: 90 }); // Default to jpeg
       }
-      
+
       await sharpInstance.toFile(outputPath);
       return outputPath;
     } catch (error) {
