@@ -68,7 +68,10 @@ router.get(
 
       res.sendFile(path.resolve(outputPath));
     } catch (error) {
-      console.error('Error processing image:', error);
+      // Only log errors in non-test environments
+      if (process.env.NODE_ENV !== 'test') {
+        console.error('Error processing image:', error);
+      }
       res.status(500).json({ error: 'Internal server error' });
     }
   },

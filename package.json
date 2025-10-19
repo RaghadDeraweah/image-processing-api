@@ -6,9 +6,9 @@
   "scripts": {
     "start": "node dist/app.js",
     "build": "tsc",
-    "test": "npm run build && jasmine dist/tests/**/*Spec.js",
-    "test:routes": "npm run build && jasmine dist/tests/routes/*Spec.js",
-    "test:utils": "npm run build && jasmine dist/tests/utils/*Spec.js",
+    "test": "npm run build && cross-env NODE_ENV=test jasmine dist/tests/**/*Spec.js",
+    "test:routes": "npm run build && cross-env NODE_ENV=test jasmine dist/tests/routes/*Spec.js",
+    "test:utils": "npm run build && cross-env NODE_ENV=test jasmine dist/tests/utils/*Spec.js",
     "lint": "eslint src/**/*.ts",
     "format": "prettier --write src/**/*.ts",
     "check-all": "npm run format && npm run lint && npm run build && npm run test"
@@ -30,6 +30,7 @@
     "@types/supertest": "^6.0.3",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
+    "cross-env": "^10.1.0",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.2.1",
